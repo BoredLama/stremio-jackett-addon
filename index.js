@@ -181,7 +181,7 @@ addon.get('/:jackettKey/stream/:type/:id.json', (req, res) => {
 
 })
 
-addon.listen(7000, () => {
+addon.listen(config.addonPort, () => {
     console.log('Add-on Repository URL: http://127.0.0.1:7000/[my-jackett-key]/manifest.json')
     console.log('Replace "[my-jackett-key]" with your Jackett API Key')
 })
