@@ -1,0 +1,21 @@
+{
+  "name": "stremio-jackett-addon",
+  "version": "1.0.0",
+  "description": "Stremio Add-on to get torrent results from Jackett",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "pkg index.js --out-path build/ --targets linux-x64,macos-x64,win-x64,linux-x86,macos-x86,win-x86"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "parse-torrent": "^6.1.2",
+    "express": "^4.16.3",
+    "xml-js": "^1.6.7",
+    "needle": "^2.2.3",
+    "async": "^2.6.1",
+    "name-to-imdb": "jaruba/name-to-imdb",
+    "video-name-parser": "^1.4.6",
+    "comment-json": "^1.1.3"
+  }
+}
