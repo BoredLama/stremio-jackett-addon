@@ -11,6 +11,9 @@ const defaultConfig = {
 
 	"// responseTimeout": [["// for stremio add-on, in milliseconds, if timeout is reached it will respond with whatever results it already has, 0 = no timeout"]],
 	"responseTimeout": 11000,
+	
+	"// addonPort": [["// port to use for stremio add-on, default is 7000"]],
+	"addonPort": 7000,
 
 	"// minimumSeeds": [["// remove torrents with less then X seeds"]],
 	"minimumSeeds": 3,
