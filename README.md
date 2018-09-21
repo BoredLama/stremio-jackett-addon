@@ -24,7 +24,7 @@ Copy the text from the input where it writes "API Key" from top right of the men
 
 ### Run Jackett Add-on
 
-[Download Jackett Add-on]() for your operating system, unpack it, run it.
+[Download Jackett Add-on](https://github.com/BoredLama/stremio-jackett-addon/releases) for your operating system, unpack it, run it.
 
 
 ### Add Jackett Add-on to Stremio
