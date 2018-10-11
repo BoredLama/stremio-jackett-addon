@@ -2,6 +2,8 @@
 
 Search on all your favorite torrent sites directly in Stremio!
 
+**This Add-on requires Stremio v4.4.10+**
+
 Note: After running the Stremio Jackett Add-on for the first time, a `config.json` file will be created in the same folder as the add-on executable. You can edit this file to configure the add-on.
 
 Note 2: The Stremio Jackett Add-on executable needs to be running (along with Jackett) in order for this add-on to work in Stremio.
