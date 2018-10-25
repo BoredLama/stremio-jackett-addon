@@ -1,6 +1,5 @@
-
 const parseTorrent = require('parse-torrent')
-const nameToImdb = require('name-to-imdb')
+const needle = require('needle')
 const async = require('async')
 
 const express = require('express')
@@ -144,44 +143,44 @@ addon.get('/:jackettKey/stream/:type/:id.json', (req, res) => {
 
     const imdbId = idParts[0]
 
-    nameToImdb({ name: imdbId, type: req.params.type }, (err, res, inf, data) => {
+    needle.get('https://v3-cinemeta.strem.io/meta/' + req.params.type + '/' + imdbId + '.json', (err, resp, body) => {
 
-        if (err || !data || !data.name) {
+        if (body && body.meta && body.meta.name && body.meta.year) {
+
+            const searchQuery = {
+                name: body.meta.name,
+                year: body.meta.year,
+                type: req.params.type
+            }
+
+            if (idParts.length == 3) {
+                searchQuery.season = idParts[1]
+                searchQuery.episode = idParts[2]
+            }
+
+            jackettApi.search(req.params.jackettKey, searchQuery,
+
+                partialResponse = (tempResults) => {
+                    results = results.concat(tempResults)
+                },
+
+                endResponse = (tempResults) => {
+                    results = tempResults
+                    respondStreams()
+                })
+
+
+            if (config.responseTimeout)
+                setTimeout(respondStreams, config.responseTimeout)
+
+        } else {
             respond(res, { streams: [] })
-            return
         }
-
-        const searchQuery = {
-            name: data.name,
-            year: data.year,
-            type: req.params.type
-        }
-
-        if (idParts.length == 3) {
-            searchQuery.season = idParts[1]
-            searchQuery.episode = idParts[2]
-        }
-
-        jackettApi.search(req.params.jackettKey, searchQuery,
-
-            partialResponse = (tempResults) => {
-                results = results.concat(tempResults)
-            },
-
-            endResponse = (tempResults) => {
-                results = tempResults
-                respondStreams()
-            })
-
-
-        if (config.responseTimeout)
-            setTimeout(respondStreams, config.responseTimeout)
-
     })
 
 })
 
 addon.listen(config.addonPort, () => {
-    console.log('Add-on Repository URL: http://127.0.0.1:' + config.addonPort + '/[my-jackett-key]/manifest.json')
+    console.log('Add-on Repository URL: http://127.0.0.1:'+config.addonPort+'/[my-jackett-key]/manifest.json')
     console.log('Replace "[my-jackett-key]" with your Jackett API Key')
 })
