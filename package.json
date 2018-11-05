@@ -18,6 +18,7 @@
     "video-name-parser": "^1.4.6",
     "xml-js": "^1.6.7",
     "localtunnel": "^1.9.1",
-    "death": "^1.1.0"
+    "death": "^1.1.0",
+    "get-port": "^4.0.0"
   }
 }
