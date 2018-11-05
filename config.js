@@ -21,6 +21,9 @@ const defaultConfig = {
 	"// maximumResults": [["// maximum number of torrents to respond with, 0 = no limit"]],
 	"maximumResults": 15,
 
+	"// remote": [["// make add-on available remotely too, through LAN and the Internet"]],
+	"remote": false,
+
 	"jackett": {
 
 		"// host": [["// self explanatory, the default port is presumed"]],
