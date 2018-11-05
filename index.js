@@ -1,6 +1,7 @@
 const parseTorrent = require('parse-torrent')
 const needle = require('needle')
 const async = require('async')
+const getPort = require('get-port')
 
 const express = require('express')
 const addon = express()
@@ -187,6 +188,8 @@ if (process && process.argv)
     })
 
 const runAddon = async () => {
+
+    config.addonPort = await getPort({ port: config.addonPort })
 
     addon.listen(config.addonPort, () => {
 
