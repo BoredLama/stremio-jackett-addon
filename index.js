@@ -180,7 +180,45 @@ addon.get('/:jackettKey/stream/:type/:id.json', (req, res) => {
 
 })
 
-addon.listen(config.addonPort, () => {
-    console.log('Add-on Repository URL: http://127.0.0.1:'+config.addonPort+'/[my-jackett-key]/manifest.json')
-    console.log('Replace "[my-jackett-key]" with your Jackett API Key')
-})
+if (process && process.argv)
+    process.argv.forEach((cmdLineArg) => {
+        if (cmdLineArg == '--remote')
+            config.remote = true
+    })
+
+const runAddon = async () => {
+
+    addon.listen(config.addonPort, () => {
+
+        console.log('Add-on URL: http://127.0.0.1:'+config.addonPort+'/[my-jackett-key]/manifest.json')
+
+        if (config.remote) {
+
+            const localtunnel = require('localtunnel')
+             
+            const tunnel = localtunnel(config.addonPort, function(err, tunnel) {
+
+                if (err) {
+                    console.error(err)
+                    return
+                }
+
+                console.log('Remote Add-on URL: '+tunnel.url+'/[my-jackett-key]/manifest.json')         
+                console.log('Replace "[my-jackett-key]" with your Jackett API Key')
+            })
+
+            tunnel.on('close', () => {
+                process.exit()
+            })
+
+            const cleanUp = require('death')({ uncaughtException: true })
+
+            cleanUp((sig, err) => { tunnel.close() })
+             
+        } else
+            console.log('Replace "[my-jackett-key]" with your Jackett API Key')
+
+    })
+}
+
+runAddon()
