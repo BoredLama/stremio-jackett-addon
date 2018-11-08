@@ -198,8 +198,13 @@ const runAddon = async () => {
         if (config.remote) {
 
             const localtunnel = require('localtunnel')
-             
-            const tunnel = localtunnel(config.addonPort, function(err, tunnel) {
+
+            const remoteOpts = {}
+
+            if (config.subdomain)
+                remoteOpts.subdomain = config.subdomain
+
+            const tunnel = localtunnel(config.addonPort, remoteOpts, (err, tunnel) => {
 
                 if (err) {
                     console.error(err)
