@@ -7,6 +7,7 @@ const express = require('express')
 const addon = express()
 
 const jackettApi = require('./jackett')
+const tunnel = require('./tunnel')
 const helper = require('./helpers')
 
 const config = require('./config')
@@ -197,32 +198,13 @@ const runAddon = async () => {
 
         if (config.remote) {
 
-            const localtunnel = require('localtunnel')
-
             const remoteOpts = {}
 
             if (config.subdomain)
                 remoteOpts.subdomain = config.subdomain
 
-            const tunnel = localtunnel(config.addonPort, remoteOpts, (err, tunnel) => {
+            tunnel(config.addonPort, remoteOpts) 
 
-                if (err) {
-                    console.error(err)
-                    return
-                }
-
-                console.log('Remote Add-on URL: '+tunnel.url+'/[my-jackett-key]/manifest.json')         
-                console.log('Replace "[my-jackett-key]" with your Jackett API Key')
-            })
-
-            tunnel.on('close', () => {
-                process.exit()
-            })
-
-            const cleanUp = require('death')({ uncaughtException: true })
-
-            cleanUp((sig, err) => { tunnel.close() })
-             
         } else
             console.log('Replace "[my-jackett-key]" with your Jackett API Key')
 
