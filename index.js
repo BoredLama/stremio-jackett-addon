@@ -12,6 +12,10 @@ const helper = require('./helpers')
 
 const config = require('./config')
 
+const autoLaunch = require('./autoLaunch')
+
+autoLaunch('Jackett Add-on', config.autoLaunch)
+
 const respond = (res, data) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Headers', '*')
