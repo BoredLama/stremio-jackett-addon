@@ -9,6 +9,9 @@ const configFile = 'config.json'
 
 const defaultConfig = {
 
+	"// autoLaunch": [["// if this is set to true, the add-on will run on system start-up"]],
+	"autoLaunch": false,
+
 	"// responseTimeout": [["// for stremio add-on, in milliseconds, if timeout is reached it will respond with whatever results it already has, 0 = no timeout"]],
 	"responseTimeout": 11000,
 
