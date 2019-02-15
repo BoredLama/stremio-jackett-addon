@@ -10,6 +10,8 @@ Note 2: The Stremio Jackett Add-on executable needs to be running (along with Ja
 
 Note 3: Run the add-on with `--remote` (or set `remote` to `true` in `config.json`) to also receive an add-on url that will work through LAN and the Internet (instead of just locally).
 
+Note 4: Setting `autoLaunch` to `true` in `config.json` will make the add-on auto launch on system start-up.
+
 
 ## Install and Usage
 
