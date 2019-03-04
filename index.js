@@ -25,7 +25,7 @@ const respond = (res, data) => {
 
 const manifest = { 
     "id": "org.stremio.jackett",
-    "version": "1.0.4",
+    "version": "1.0.5",
 
     "name": "Stremio Jackett Addon",
     "description": "Stremio Add-on to get torrent results from Jackett",
