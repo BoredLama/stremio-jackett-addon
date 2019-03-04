@@ -56,6 +56,7 @@ function runTunnel(addonPort, remoteOpts) {
         const cleanUp = require('death')({ uncaughtException: true })
 
         cleanUp((sig, err) => {
+            console.error(err)
             allowClose = true
             tunnel.close()
         })
