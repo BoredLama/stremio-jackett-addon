@@ -14,6 +14,8 @@ const config = require('./config')
 
 const autoLaunch = require('./autoLaunch')
 
+const version = require('./package.json').version
+
 autoLaunch('Jackett Add-on', config.autoLaunch)
 
 const respond = (res, data) => {
@@ -25,7 +27,7 @@ const respond = (res, data) => {
 
 const manifest = { 
     "id": "org.stremio.jackett",
-    "version": "1.0.5",
+    "version": version,
 
     "name": "Stremio Jackett Addon",
     "description": "Stremio Add-on to get torrent results from Jackett",
@@ -192,6 +194,11 @@ if (process && process.argv)
     process.argv.forEach((cmdLineArg) => {
         if (cmdLineArg == '--remote')
             config.remote = true
+        else if (cmdLineArg == '-v') {
+            // version check
+            console.log('v' + version)
+            process.exit()
+        }
     })
 
 const runAddon = async () => {
