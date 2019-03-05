@@ -28,7 +28,7 @@ const helper = {
     },
 
     followRedirect: (url, cb) => {
-        if (!url.startsWith('magnet:?') && url.startsWith('http://127.0.0.1')) {
+        if (!url.startsWith('magnet:')) {
             // follow redirect to see if the jackett url is a torrent link or a magnet link
             needle.get(url, (err, resp, body) => {
                 if (resp && resp.headers && resp.headers.location)
