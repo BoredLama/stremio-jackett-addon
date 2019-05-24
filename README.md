@@ -1,5 +1,7 @@
 # Stremio Jackett Add-on
 
+**THIS ADD-ON HAS NOW BEEN PORTED TO [PimpMyStremio](https://www.reddit.com/r/StremioAddons/comments/bsgvjt/news_pimpmystremio_release_a_local_addon_manager/) AND MOVED TO [A NEW REPOSITORY](https://github.com/BoredLama/stremio-jackett-local) FOR THIS PURPOSE, PLEASE USE PimpMyStremio AND INSTALL JACKETT FROM INSIDE THE APP**
+
 Search on all your favorite torrent sites directly in Stremio!
 
 **This Add-on requires Stremio v4.4.10+**
